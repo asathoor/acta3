@@ -5,7 +5,7 @@
 <form action="#" method="get" enctype="multipart/form-data">
 	<fieldset>
 		<legend>Søg i Index Acta Masonica Scandinavica</legend>
-	<input type="text" name="ord">
+	<input type="text" pattern=".{3,}" name="ord">
 	<button name="seek" value="seek" type="submit">Søg</button>
 	</fieldset>
 </form>

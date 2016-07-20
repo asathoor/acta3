@@ -59,7 +59,7 @@ while($row = $result->fetch_assoc()){
 	name="suggestion" 
 	value="new_input" required> <label> Gem et nyt ord, rediger evt. beskrivelsen: </label>
 </p>
-	<textarea name="nyt_ord" rows="4" cols="20"> <?php echo $_GET['ord']; ?></textarea>
+	<textarea name="nyt_ord" rows="4" cols="20"><?php echo $_GET['ord']; ?></textarea>
 
 <?php mysqli_close($mysqli); ?>
 
