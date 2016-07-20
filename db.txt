@@ -1,4 +1,6 @@
 <?php
+/* rename to db.php  */
+
 // CONNECT TO THE SAKILA DATABASE
 
 $mysqli = new mysqli("localhost", "USER", "PASSWORD","DATABASE"); // creates the object
