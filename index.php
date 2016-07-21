@@ -1,4 +1,4 @@
-<?php include_once "header.php"; ?>
+<?php include_once "header_index.php"; ?>
 
 <form action="#" method="get" enctype="multipart/form-data">
 	<fieldset>

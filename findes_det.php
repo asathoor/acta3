@@ -18,13 +18,10 @@ $sql = "SELECT *
 
 ?>
 
-<h2>Nyt indexord - eller brug et, der ligner</h2>
-
-<h5>Enten ) vælg en af disse muligheder</h5>
-
 <form action="gem_action.php" method="get" enctype="multipart/form-data">
 	<fieldset> 
-		<legend>Indtast hele søgeordet eller vælg et eksisterende</legend>
+
+<h3>Enten - anvend en af disse muligheder:</h3>
 	
 <?php
 // db connection
@@ -51,7 +48,7 @@ while($row = $result->fetch_assoc()){
 ?>
 	
 	
-	<h5> Eller ) opret det nye ord: </h5>	
+	<h3> Eller - opret et nyt ord i index: </h3>	
 
 <p>
 	<input 
