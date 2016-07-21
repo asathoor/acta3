@@ -2,7 +2,7 @@
 
 <form action="#" method="get" enctype="multipart/form-data">
 	<fieldset>
-		<legend>Ny forfatter</legend>
+		<legend>Ny artikel</legend>
 			<input type="text" name="title" required> <label> Titel</label><br>
 			<input type="text" name="vol" required> <label> Bind</label><br>
 			<input type="text" name="year" required> <label> År</label><br>
@@ -28,11 +28,11 @@ if( isset($_GET['submit']) ) {
 	
 	// feedback
 	if($insert) {
-		echo "<div class=\"alert alert-success\" role=\"alert\">Ny forfatter tilføjet:<br> $sql</div>"; // bootstrap alert box
+		echo "<div class=\"alert alert-success\" role=\"alert\">Ny artikel tilføjet:<br> $sql</div>"; // bootstrap alert box
 	}
 	else {
-		echo "<div class=\"alert alert-danger\" role=\"alert\"> " 
-		.  mysqli_error($insert)) 
+		echo "<div class=\"alert alert-danger\" role=\"alert\">" 
+		.  mysqli_error($insert) 
 		. "</div>"; // bootstrap alert box
 	}
 	

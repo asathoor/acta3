@@ -15,9 +15,12 @@
 </head>
 <body>
 
+<!-- Navigation -->
+<?php require_once "menu.php"; ?>
+
 <!-- logo and header section-->
 <div class="container-fluid">
-	<header><h1> <a href="index.php">Index Acta Masonica Scandinavica</a></header>
+	<header class="page-header"><h1> <a href="index.php">Index<br><small>Acta Masonica Scandinavica</small></a></header>
    <div class="row">
    	<div class="col-sm-12">
 		   		

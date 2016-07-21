@@ -1,12 +1,10 @@
 <?php include_once "header.php"; ?>
 
-<p>Indexord (skriv evt. en del af ordet)</p>
-
 <form action="#" method="get" enctype="multipart/form-data">
 	<fieldset>
-		<legend>Søg i Index Acta Masonica Scandinavica</legend>
+		<legend>Søg</legend>
 	<input type="text" pattern=".{3,}" name="ord">
-	<button name="seek" value="seek" type="submit">Søg</button>
+	<button name="seek" value="seek" type="submit">OK</button>
 	</fieldset>
 </form>
 
