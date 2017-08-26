@@ -1,0 +1,32 @@
+/* Index Acta Masonica Scandinavica */
+
+$margins: 2em;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1::before {
+	content: url(../sc.jpeg);
+}
+
+header {
+  margin-bottom: $margins;
+}
+
+footer {
+  margin-top: $margins;
+}
+
+.tydelig {
+  /*color: #337AB7;*/
+  font-weight: bold;
+}
+
+em {
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+li {
+  margin-bottom: $margins;
+}

@@ -1,29 +1,24 @@
 /* Index Acta Masonica Scandinavica */
 body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  font-family: Arial, Helvetica, sans-serif; }
 
 h1::before {
-	content: url(../sc.jpeg);
-}
+  content: url(../sc.jpeg); }
 
 header {
-  margin-bottom: 2em;
-}
+  margin-bottom: 2em; }
 
 footer {
-  margin-top: 2em;
-}
+  margin-top: 2em; }
 
 .tydelig {
   /*color: #337AB7;*/
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 em {
-  font-family: Impact, Charcoal, sans-serif;
-}
+  font-family: Impact, Charcoal, sans-serif; }
 
 li {
-  margin-bottom: .8em;
-}
+  margin-bottom: 2em; }
+
+/*# sourceMappingURL=style.css.map */
