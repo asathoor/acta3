@@ -1,108 +1,73 @@
-<?php /**
-file: author_article.php
-purpose: save the relation between author(s) and aticle(s)
-*/  ?>
-
-<?php include_once "header.php"; ?>
-
 <?php 
-function kombiner(){
-
-	// db connect
-	require "db.php";
-	
-	// authors
-	$sql_authors = "SELECT * FROM authors ORDER BY lastname";
-	$result =  $mysqli->query($sql_authors); // query
-			
-	// article titles
-	$sql_titles = "SELECT * FROM articles ORDER BY title";
-	$result_titles	= $mysqli->query($sql_titles); // query
-	
+/**
+ * file: author_article.php
+ * purpose: save the relation between author(s) and aticle(s)
+**/  
+include_once "header.php";
 ?>
 
+<h3>#DRAFT -- Combine: an author with an article</h3>
 
-<form action="#" method="get" enctype="multipart/form-data">
-	<fieldset>
-		<legend>Kombiner forfatter med artikel</legend>
-	<select name="author">
+<form  action="#" method="get" enctype="multipart/form-data">
+
+	<!-- select author -->
+	Forfatter: <select name="author">
 		<?php
-		// loop out authors
-		while($row = $result->fetch_assoc()){
-			
-			$id = $row['authors_id'];
-			$firstname = $row['firstname'];
-			$lastname = $row['lastname'];
-					
-    		echo '<option value="'. $id . '" label="$id">' . $lastname . ',' . $firstname . '</option>';
-   	}				
+		// connection
+		include_once "db.php";
 		
+		// author list
+		$sql_authors = "SELECT `authors_id`, `firstname`, `lastname` FROM `authors` ORDER BY `firstname`";
+		$result =  $mysqli->query( $sql_authors ); // query
+		$row = $result->fetch_assoc(); // create associative array
+		
+		// loop out the result
+		foreach ($result as $row) {
+			print "<option value='" . $row['authors_id'] .   "'>" . $row['firstname'] . " " . $row['lastname'] . "</option>";
+		}
 		?>
 	</select>
-	<select name="article">
-		<!-- article / value = article_id -->
+	<br>
+	
+	<!-- select article -->
+	Artikel: <select name="article">
 		<?php
-		// loop out articles
-		while($row = $result_titles->fetch_assoc()){
-			
-			$id_article = $row['articles_id'];
-			$title = $row['title'];
-					
-    		echo '<option value="'. $id_article . '" label="$id">' . $title . '</option>';
-   	}
-   	
-   	mysqli_close($mysqli); // con close	
-   	?>
-				
-	</select>
-	<button name="submit" value="submit" type="submit">Gem reference</button>
-	<button name="Fortryd" value="fortryd" type="reset">Fortryd</button>
-	</fieldset>
-</form>
-<?php
-
-}
-
-kombiner(); // write the form
-?>
-
-<?php
-/* Save the data */
-
-// show errors
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-if (isset($_GET['submit'])) {
-	
-	// connect to the database
-	require "db.php";
+		// article list
+		$sql_titles = "SELECT `articles_id`, `title` FROM `articles` ORDER BY `title`";
 		
-	// clean input
-	$author = trim(strip_tags(addslashes($_GET['author'])));
-	$article = trim(strip_tags(addslashes($_GET['article'])));
+			$result =  $mysqli->query( $sql_titles ); // query
+			$row = $result->fetch_assoc(); // create associative array
+			
+			// loop out the result
+			foreach ($result as $row) {
+				print "<option value='" . $row['articles_id'] . "'>" .  $row['title'] . "</option>";
+			}
+		
+		?> 
+	</select>
 	
-	// get the id .. 0,1
-	$sql = "INSERT INTO `skriver` ( `skriver_id`, `authors_id`, `articles_id` ) VALUES (NULL,'$author', '$article')";
-	echo $sql;
-	
-	// insert into skriver
-	$insert = $mysqli->query($sql);
-	//$insert;
-	
-	// feedback
-	if($insert) {
-		echo "Forfatter og artikel relationen er gemt i databasen";
-		echo "<pre> Referencen er gemt: " . $sql . "</pre>";
-	}
-	else {
-		echo "Kunne ikke indsætte relationen i databasen";
-		echo "<pre> Fejl! Prøvece denne SQL: " . $sql . "</pre>";	
-	}
-	
-	// close connection
-	mysqli_close($mysqli); 
+	<!-- buttons -->
+	<div>
+	<button name="Gem" value="gem" type="submit">Gem</button>
+	<button name="Fortryd" value="fortryd" type="reset">Fortryd</button>
+	</div>
+
+</form>
+
+<?php
+// handle form
+if( isset( $_GET['Gem'] ) ) {
+	echo "GET: <pre>";
+	print_r($_GET);
+	echo "</pre>";
+
+	$sql = "INSERT INTO `skriver` ('authors_id','articles_id') VALUES (" . $_GET['author'] . " , " . $_GET['article'] . " )  ";
+	echo "SQL: <pre>" . $sql . "</pre>";
+	echo "<script> alert('SQL insert skal aktiveres i author_article.php.') </script>";
+	mysqli_close( $mysqli );
+} else {
+	echo "Vælg en forfatter og en artikel. Tast derefter gem.";
+	mysqli_close( $mysqli );
 }
 
 ?>

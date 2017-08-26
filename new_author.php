@@ -13,14 +13,15 @@
 </form>
 
 <?php
-// clean up input
-$firstname = trim(addslashes(strip_tags($_GET['firstname'])));
-$lastname = trim(addslashes(strip_tags($_GET['lastname'])));
-$grad = trim(addslashes(strip_tags($_GET['grad'])));
-$titel = trim(addslashes(strip_tags($_GET['titel'])));
-
 // insert
 if( isset($_GET['submit']) ) {
+	// clean up input
+	$firstname = trim(addslashes(strip_tags($_GET['firstname'])));
+	$lastname = trim(addslashes(strip_tags($_GET['lastname'])));
+	$grad = trim(addslashes(strip_tags($_GET['grad'])));
+	$titel = trim(addslashes(strip_tags($_GET['titel'])));
+
+	// SQL
 	$sql = "INSERT INTO authors (`firstname`,`lastname`,`grad`,`titel`) VALUES ('$firstname', '$lastname', '$grad', '$titel' )";
 	//echo $sql;
 	require_once "db.php";

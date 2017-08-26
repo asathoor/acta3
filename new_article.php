@@ -13,15 +13,16 @@
 </form>
 
 <?php
-// clean up input
-$titel = trim(addslashes(strip_tags($_GET['title'])));
-$vol = trim(addslashes(strip_tags($_GET['vol'])));
-$year = trim(addslashes(strip_tags($_GET['year'])));
-$page = trim(addslashes(strip_tags($_GET['page'])));
 
 // insert
 if( isset($_GET['submit']) ) {
-	
+	// clean up input
+	$titel = trim(addslashes(strip_tags($_GET['title'])));
+	$vol = trim(addslashes(strip_tags($_GET['vol'])));
+	$year = trim(addslashes(strip_tags($_GET['year'])));
+	$page = trim(addslashes(strip_tags($_GET['page'])));
+
+	// SQL	
 	$sql = "INSERT INTO articles (`title`,`vol`,`year`,`page`) VALUES ('$titel', '$vol', '$year', '$page' )";
 	require_once "db.php";
 	$insert = $mysqli->query($sql);

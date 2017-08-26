@@ -19,3 +19,11 @@ footer {
   /*color: #337AB7;*/
   font-weight: bold;
 }
+
+em {
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+li {
+  margin-bottom: .8em;
+}

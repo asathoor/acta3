@@ -1,4 +1,9 @@
-<?php include_once "header_index.php"; ?>
+<?php 
+// Online db:
+// include_once "header_index.php"; 
+// Produktion:
+include_once "header.php"; 
+?>
 
 <form action="#" method="get" enctype="multipart/form-data">
 	<fieldset>
@@ -9,16 +14,20 @@
 </form>
 
 <?php
+// seek in the database
 if(isset($_GET['seek'])) {
 
-	echo "<h3> Index: " . $_GET['ord'] . "  </h3>";
+	// clean input
+   $renset = addslashes(strip_tags(trim(($_GET['ord']))));
+   
+	echo "<h3> Index: " . $renset . "  </h3>";
 
 	// db connection
 	include_once "db.php";
 
-   $renset = addslashes($_GET['ord']);
 	
-	// sql
+	
+	// SELECT ...
 	$sql = "SELECT *
 		FROM `word_vol_title_page`
 		WHERE `word` LIKE '%"
@@ -26,30 +35,30 @@ if(isset($_GET['seek'])) {
 		."%' 
 		OR `title` LIKE '%"
 		. $renset
-		. "%' ORDER BY word, title, vol, page";
+		. "%' ORDER BY word, page, title";
 	
 	// loop out similar words as radio buttons
 	$result =  $mysqli->query($sql); // query
 
 
-	// looping out the result
-   echo "<ol>";	
+	// loop out the result
+   echo "<ol>"; // define a list
 	
 	while($row = $result->fetch_assoc()){
 	
-		 echo "<li><span class='tydelig'>" 
+		 echo "<li> <span class='tydelig'>" 
 		 . stripslashes($row['word'])
-		 . "</span> <br> \"" 
+		 . "</span> <em> <br> - \"" 
 		 . stripslashes($row['title']) 
-		 . "\" "
-		 . " <em>Acta Masonica Scandinavica vol. "
+		 . "\"</em> "
+		 . "<br>Acta Masonica Scandinavica vol. "
 		 . $row['vol'] 
 		 . " p. "
 		 . $row['page']
 		 . " ("
 		 . $row['year'] 
 		 . ")"
-		 . "</em></li>";
+		 . "</li>"; // the loop
 	
 	   } // .while
 	   
